@@ -160,10 +160,6 @@ namespace WebAPI.Controllers
                 }
                 else
                 {
-                    var t = User.FindFirst(ClaimTypes.NameIdentifier);
-                    Console.WriteLine(User.FindFirst(ClaimTypes.Spn).Value);
-                    Console.WriteLine(_UserService.GetUserName());
-
                     if ((student.StudentId).ToString() == _UserService.GetUserId())
                     {
                         var R = _StudentService.GetClassDetail(student);
