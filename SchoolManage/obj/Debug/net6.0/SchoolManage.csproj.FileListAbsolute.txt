@@ -1,0 +1,15 @@
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\bin\Debug\net6.0\SchoolManage.exe
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\bin\Debug\net6.0\SchoolManage.deps.json
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\bin\Debug\net6.0\SchoolManage.runtimeconfig.json
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\bin\Debug\net6.0\SchoolManage.dll
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\bin\Debug\net6.0\SchoolManage.pdb
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\SchoolManage.csproj.AssemblyReference.cache
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\SchoolManage.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\SchoolManage.AssemblyInfoInputs.cache
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\SchoolManage.AssemblyInfo.cs
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\SchoolManage.csproj.CoreCompileInputs.cache
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\SchoolManage.dll
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\refint\SchoolManage.dll
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\SchoolManage.pdb
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\SchoolManage.genruntimeconfig.cache
+C:\Users\yagiz\source\repos\SchoolManagament\SchoolManage\obj\Debug\net6.0\ref\SchoolManage.dll
