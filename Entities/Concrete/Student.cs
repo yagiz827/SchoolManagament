@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public byte[] PasswordSalt { get; set; }
         public string StudentName { get; set; }
         public bool CanGrad{ get; set; }
-        public int Grade { get; set; }
+        public double Grade { get; set; }
         public List<StudentClass> Stu { get; set; }
 
 

@@ -135,5 +135,13 @@ namespace Bussiness.Concrete
             Console.WriteLine(m);
             return new SuccessDataResult<string>(m, Message.AllGot);
         }
+
+        public IDataResult<string> Pass(Student stu)
+        {
+            var m = _istudentdal.Pass(stu);
+            return new SuccessDataResult<string>(m, Message.AllGot);
+
+
+        }
     }
 }

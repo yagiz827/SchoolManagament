@@ -98,8 +98,24 @@ namespace DataAccessLayer.Concrete
                     sum+=Gpaa[t];
                 }
                 sum =sum/a.Count();
-            }
             
+                stu.Grade = sum;
+                if (stu.Grade >= 2)
+                {
+                    
+                    stu.CanGrad = true;
+                
+
+                }
+                else
+                {
+                    stu.CanGrad = false;
+
+                }
+                db.Update(stu);
+                db.SaveChanges();
+            }
+
             return sum;
         }
 
@@ -123,6 +139,16 @@ namespace DataAccessLayer.Concrete
             var jwt= new JwtSecurityTokenHandler().WriteToken(token);
             
             return jwt;
+        }
+
+        public string Pass(Student stu)
+        {
+               
+            if (stu.CanGrad = true)
+            {
+                return "yeah passed "+ stu.Grade.ToString();
+            }
+            return "noo";
         }
     }
 }

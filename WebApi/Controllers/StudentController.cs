@@ -175,10 +175,51 @@ namespace WebAPI.Controllers
             }
             return BadRequest();
         }
+        [HttpGet]
+        [Route("CheckifPass"), Authorize(Roles = "Teacher,Student")]
+        public IActionResult Pass(string name)
+        {
+
+            List<Student> Students = _StudentService.GetA().Data;
+
+            var a = from stu in Students
+                    where stu.StudentName == name
+                    select stu;
+            foreach (var student in a)
+            {
+                Console.WriteLine(_UserService.GetRole());
+                if (_UserService.GetRole() == "Teacher")
+                {
+                    var R = _StudentService.Pass(student);
+                    if (R.Succes)
+                    {
+                        return Ok(R);
+
+                    }
+                    return BadRequest(R);
+
+                }
+                else
+                {
+                    if ((student.StudentId).ToString() == _UserService.GetUserId())
+                    {
+                        var R = _StudentService.Pass(student);
+                        if (R.Succes)
+                        {
+                            return Ok(R);
+
+                        }
+                        return BadRequest(R);
+
+                    }
+                }
+            }
+            return BadRequest();
+        }
         
         
         [HttpPost]
-        [Route("Learn GPA")]
+        [Route("LearnGPA"), Authorize(Roles = "Teacher,Student")]
         public IActionResult Gpa(studentDetDto DtoStudent)
         {
             List<Student> Students = _StudentService.GetA().Data;

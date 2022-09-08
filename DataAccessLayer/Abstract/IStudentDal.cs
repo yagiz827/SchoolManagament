@@ -17,6 +17,7 @@ namespace DataAccessLayer.Abstract
         double Gpa(Student stu);
 
         string Login(Student stu); 
+        string Pass(Student stu); 
 
     }
 }
