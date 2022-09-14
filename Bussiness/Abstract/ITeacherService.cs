@@ -17,7 +17,6 @@ namespace Bussiness.Abstract
         IResults Add(Teacher teach);
         IResults Register(Teacher stu);
         IDataResult<string> Login(Teacher stu);
-        IDataResult<Teacher> GetById(int id);
         IDataResult<List<Class>> GetByTeacherName(string name);
 
         IResults Delete(List<Teacher> list1, Teacher pro);

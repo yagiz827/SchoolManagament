@@ -14,7 +14,10 @@ namespace Entities.Concrete
         public Teacher Teachers { get; set; }
 
         public int TeacherId { get; set; }
+        public string Weekday { get; set; }
+        public string Hour { get; set; }
         public List<StudentClass> Cla { get; set; }
+        
 
     }
 }

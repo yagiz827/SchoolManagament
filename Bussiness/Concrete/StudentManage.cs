@@ -107,13 +107,13 @@ namespace Bussiness.Concrete
             return new SuccessDataResult<List<string>>(R, Message.AllGot);
         }
 
-        public IDataResult <List<StudentClass>>AddClasses(string grade, String h,List<Student> stu,StudentClass classes)
+        public IDataResult <StudentClass>AddClasses(string grade, Student h,StudentClass classes,Class cass)
         {
 
-            var R = _istudentdal.AddClasses(grade,h,stu,classes);
+            var R = _istudentdal.AddClasses(grade,h,classes,cass);
 
 
-            return new SuccessDataResult<List<StudentClass>>(R, Message.AllGot);
+            return new SuccessDataResult<StudentClass>(R, Message.AllGot);
         }
 
         public IResults Gpa(Student teach)
@@ -143,5 +143,14 @@ namespace Bussiness.Concrete
 
 
         }
+
+        public IDataResult<string[,]> GetSuchedule(List<Suchedule> stu)
+        {
+            var h = _istudentdal.GetSuchedules(stu);
+            
+            return new SuccessDataResult<string[,]>(h, Message.AllGot);
+        }
+
+        
     }
 }

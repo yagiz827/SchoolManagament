@@ -34,8 +34,16 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Hour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("TeacherId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Weekday")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ClassId");
 
@@ -55,8 +63,8 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("CanGrad")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Grade")
-                        .HasColumnType("int");
+                    b.Property<double>("Grade")
+                        .HasColumnType("float");
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
@@ -92,6 +100,36 @@ namespace DataAccessLayer.Migrations
                     b.HasIndex("ClassId");
 
                     b.ToTable("studentClasses");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Suchedule", b =>
+                {
+                    b.Property<int>("SucheduleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SucheduleId"), 1L, 1);
+
+                    b.Property<int>("ArrayIndexX")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArrayIndexY")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Value")
+                        .HasColumnType("bit");
+
+                    b.HasKey("SucheduleId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("suchedules");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Teacher", b =>
@@ -149,6 +187,17 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("student");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.Suchedule", b =>
+                {
+                    b.HasOne("Entities.Concrete.Student", "Students")
+                        .WithMany("suchedules")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Students");
+                });
+
             modelBuilder.Entity("Entities.Concrete.Class", b =>
                 {
                     b.Navigation("Cla");
@@ -157,6 +206,8 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("Entities.Concrete.Student", b =>
                 {
                     b.Navigation("Stu");
+
+                    b.Navigation("suchedules");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Teacher", b =>

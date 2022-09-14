@@ -86,20 +86,7 @@ namespace Bussiness.Concrete
 
             }
         }
-        public IDataResult<List<Teacher>> GetById(int m)
-        {
-            var R = _iTeacherdal.GetA(p => p.TeacherId == m);
-            if (R == null)
-            {
-                return new ErrorDataResult<List<Teacher>>(Message.No);
-            }
-            else
-            {
-                return new SuccessDataResult<List<Teacher>>(R, Message.AllGot);
-
-
-            }
-        }
+        
 
         public IDataResult<List<Teacher>> GetTeacherDetail()
         {
@@ -107,10 +94,8 @@ namespace Bussiness.Concrete
         }
 
 
-        IDataResult<Teacher> ITeacherService.GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+
+
         public IDataResult<List<Class>> GetByTeacherName(string name)
         {
             return new SuccessDataResult<List<Class>>(_iTeacherdal.GetClassDet(name), Message.AllGot);

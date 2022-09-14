@@ -77,6 +77,9 @@ namespace WebAPI.Controllers
                 {
                     ClassName = DtoClass.DtoClassName,
                     TeacherId = m.TeacherId,
+                    Weekday=DtoClass.weekday,
+                    Hour=DtoClass.hour
+
                 };
                 var R = _ClassService.Add(_Class);
 

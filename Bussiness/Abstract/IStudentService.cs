@@ -16,9 +16,11 @@ namespace Bussiness.Abstract
         IResults Register(Student stu);
         IDataResult<string> Login(Student stu);
         IDataResult<string> Pass(Student stu);
+        IDataResult <string[,]> GetSuchedule(List<Suchedule> stu);
+        
         IDataResult<List<string>> GetClassDetail(Student teach);
-        IDataResult <List<StudentClass>> AddClasses(string grade,string s ,List<Student> stu,StudentClass classes);
-
+        IDataResult <StudentClass> AddClasses(string grade,Student s ,StudentClass classes,Class cass);
+      
         IResults Add(Student teach);
         IResults Gpa(Student teach);
         IDataResult<List<Student>> GetByName(string id);

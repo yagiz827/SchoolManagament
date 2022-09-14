@@ -117,18 +117,6 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpGet("Get Via Name")]
-        public IActionResult Get(int Name)
-        {
-
-            var R = _TeacherService.GetById(Name);
-            if (R.Succes)
-            {
-                return Ok(R);
-            }
-            return BadRequest(R);
-
-        }
         
         [HttpPost("Add Teacher")]
         public IActionResult Post(teacherDto DtoTeacher)

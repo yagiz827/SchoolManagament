@@ -11,8 +11,9 @@ namespace DataAccessLayer.Abstract
 {
     public interface IStudentDal: IEntityRepository<Student>
     {
-        List<StudentClass> AddClasses(string grade, string d,List<Student> stu,StudentClass classes);
+        StudentClass AddClasses(string grade, Student d,StudentClass classes, Class cass);
         List<string> GetClassDetail(Student stu);
+        string[,] GetSuchedules(List<Suchedule> stu);
 
         double Gpa(Student stu);
 

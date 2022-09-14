@@ -11,12 +11,19 @@ using System;
 using System.Diagnostics;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Xml.Linq;
 using WebAPI.Hashing;
 
 namespace WebAPI.Controllers
 {
+    class ViewM
+    {
+         public string[][] h { get; set; }
 
-    
+    }
+
     [Route("api/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase
@@ -28,8 +35,9 @@ namespace WebAPI.Controllers
         public StudentsController(IStudentService StudentService, IUserService userService)
         {
             _StudentService = StudentService;
-            _UserService= userService;
+            _UserService = userService;
         }
+        
         [HttpPost]
         [Route("Register")]
         public IActionResult Register(studentRegDto reg)
@@ -93,7 +101,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
 
-        //public List<Student> Get()
+        //public List<Student> Get()p
         //{
         //    IStudentService _StudentService = new StudentMan(new EfStudentDal());
 
@@ -122,7 +130,7 @@ namespace WebAPI.Controllers
 
 
         
-        [HttpGet("{name}"),Authorize]
+        [HttpGet("{name}")]
         public IActionResult Get(string name)
         {
 
@@ -244,32 +252,78 @@ namespace WebAPI.Controllers
 
         
         [HttpPost]
-        [Route("AddCourses")]
+        [Route("AddCourses"), Authorize(Roles = "Teacher,Student")]
 
-        public IActionResult AddClass( string grade,String Name,StudentClassDto stc)
+        public IActionResult AddClass( string grade,List<StudentClassDto> stc)
         {
+            Suchedule su = new Suchedule();
             List<Student> Students = _StudentService.GetA().Data;
-            StudentClass d = new StudentClass();
-
-
-            using (var db = new Database())
+            
+            foreach (var f in Students)
             {
-                foreach (var cass in db.Classes)
+                if(f.StudentId.ToString()== _UserService.GetUserId())
                 {
-                    if (cass.ClassName == stc.ClassName)
+                    using (var db = new Database())
                     {
-                        d.ClassId = cass.ClassId;
-                
-                    }
-                }  
-            }
-            var R = _StudentService.AddClasses(grade,Name,Students, d);
+                        su.StudentId = f.StudentId;
+                        foreach (var st in stc)
+                        {
+                            foreach (var cass in db.Classes)
+                            {
 
-            if (R.Succes)
+
+                                if (cass.ClassName == st.ClassName)
+                                {
+                                    StudentClass d = new StudentClass();
+                                    d.ClassId = cass.ClassId;
+                                    var R = _StudentService.AddClasses(grade, f, d,cass);
+
+
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }   
+            return Ok();
+        }
+        
+        [HttpGet]
+        [Route("LearnSuchedule"), Authorize(Roles = "Teacher,Student")]
+
+        public IActionResult Suchedule()
+        {
+            ViewM matrix =new ViewM();
+            matrix.h=new string[6][];
+            for (int i = 0; i < 6; i++)
             {
-                return Ok(R);
+                matrix.h[i]= new string[8];
             }
-            return BadRequest(R);
+
+            List<Student> Students = _StudentService.GetA().Data;
+            
+            foreach (var f in Students)
+            {
+                if(f.StudentId.ToString()== _UserService.GetUserId())
+                {
+                    using (var db = new Database())
+                    {
+                        var t=db.suchedules.Where(x=>x.StudentId==f.StudentId).ToList();
+                        var r=_StudentService.GetSuchedule(t);
+                        var yy = r.Data;
+                        for (int i = 0; i < 8; i++)
+                        {
+                            for (int j = 0; j < 6; j++)
+                            { matrix.h[j][i]=yy[j, i]; }
+
+                        }
+                        return Ok(matrix.h);
+                    }
+
+                }
+            }   
+            return BadRequest();
         }
         
         [HttpDelete]

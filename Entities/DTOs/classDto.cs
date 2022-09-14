@@ -14,6 +14,8 @@ namespace Entities.DTOs
         public string DtoClassName { get; set; }
 
         public string DtoTeachernName { get; set; }
+        public string weekday { get; set; }
+        public string hour { get;set; }
 
     }
 }

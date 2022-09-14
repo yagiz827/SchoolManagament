@@ -16,6 +16,10 @@ namespace Entities.Concrete
         public bool CanGrad{ get; set; }
         public double Grade { get; set; }
         public List<StudentClass> Stu { get; set; }
+        public ICollection<Suchedule> suchedules { get; set; }
+
+
+
 
 
 

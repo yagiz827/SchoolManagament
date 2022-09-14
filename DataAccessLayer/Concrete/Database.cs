@@ -15,7 +15,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder data)
         {
-            data.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\yagiz\\Desktop\\DBs\\SchoolManagament3.mdf;Integrated Security=True;Connect Timeout=30");
+            data.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\yagiz\\Desktop\\DBs\\SchoolApp.mdf;Integrated Security=True;Connect Timeout=30");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,9 +24,14 @@ namespace DataAccessLayer.Concrete
             modelBuilder.Entity<Teacher>(entity =>
            entity.HasMany(p => p.Classes).
            WithOne(p => p.Teachers).HasForeignKey(p => p.TeacherId));
+            
+           modelBuilder.Entity<Student>(entity =>
+           entity.HasMany(p => p.suchedules).
+           WithOne(p => p.Students).HasForeignKey(p => p.StudentId));
 
             modelBuilder.Entity<StudentClass>()
             .HasKey(x => new { x.StudentId, x.ClassId });
+
 
            
            
@@ -39,6 +44,9 @@ namespace DataAccessLayer.Concrete
         public DbSet<Student> Students{ get; set; }
         public DbSet<Teacher> Teachers{ get; set; }
         public DbSet<StudentClass> studentClasses{ get; set; }
+        public DbSet<Suchedule> suchedules{ get; set; }
+
+
 
     }
 }
