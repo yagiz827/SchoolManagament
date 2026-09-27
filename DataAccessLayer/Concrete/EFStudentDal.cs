@@ -227,7 +227,7 @@ namespace DataAccessLayer.Concrete
                 new Claim(ClaimTypes.Spn,stu.StudentId.ToString()),
 
             };
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Spider2000spider2000SPIDER2000"));
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("CHANGE-ME-dev-only-jwt-signing-key-use-a-long-random-secret-in-prod"));
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
             var token = new JwtSecurityToken(
                 claims: claims,
